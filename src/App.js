@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from 'antd';
+import ToDo from './Components/ToDo/Parent';
+import './app.css';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigation = useNavigate();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button
+        style={{
+          position: 'relative',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          marginTop: '20px',
+        }}
+        type="primary"
+        onClick={() => navigation('/pagination')}
+      >
+        Go To Pagination
+      </Button>
+      <div className="body">
+        <ToDo />
+      </div>
+    </>
   );
 }
 
