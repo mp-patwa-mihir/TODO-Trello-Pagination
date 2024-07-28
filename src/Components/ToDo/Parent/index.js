@@ -22,9 +22,11 @@ const ToDo = () => {
     },
   };
 
-  const handleClick = (e) => {
-    const newData = todo?.filter((todo) => todo?.id !== e);
-    dispatch(setTodo(newData));
+  const handleClick = (e, n) => {
+    const data = n === 'TODO List' ? todo : completedTodo;
+    const dispatcher = n === 'TODO List' ? setTodo : setCompletedTodo;
+    const newData = data?.filter((todo) => todo?.id !== e);
+    dispatch(dispatcher(newData));
   };
 
   const handleDragEnd = (e) => {
@@ -83,7 +85,10 @@ const ToDo = () => {
                         {...provided.dragHandleProps}
                       >
                         <p>{i?.value}</p>
-                        <Button type="link" onClick={() => handleClick(i?.id)}>
+                        <Button
+                          type="link"
+                          onClick={() => handleClick(i?.id, column?.name)}
+                        >
                           Delete
                         </Button>
                       </li>
